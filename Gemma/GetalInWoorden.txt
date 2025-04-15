@@ -1,0 +1,73 @@
+Function GetalInWoorden(Getal As Long) As String
+
+    Dim Eenheden As Variant
+    Dim Tientallen As Variant
+    Dim Honderdtallen As String
+    Dim Duizendtallen As String
+    Dim Miljoentallen As String
+    
+    ' Array met eenheden
+    Eenheden = Array("", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen")
+    
+    ' Array met tientallen
+    Tientallen = Array("", "", "twintig", "dertig", "veertig", "vijftig", "zestig", "zeventig", "tachtig", "negentig")
+    
+    ' Controleer miljoentallen
+    If Getal >= 1000000 Then
+        Miljoentallen = GetalNaarHonderden(Getal \ 1000000) & "miljoen "
+        Getal = Getal Mod 1000000
+    End If
+
+    ' Controleer duizendtallen
+    If Getal >= 1000 Then
+        Duizendtallen = GetalNaarHonderden(Getal \ 1000) & "duizend "
+        Getal = Getal Mod 1000
+    End If
+    
+    ' Combineer alle strings
+    GetalInWoorden = Miljoentallen & Duizendtallen & GetalNaarHonderden(Getal)
+
+End Function
+
+Function GetalNaarHonderden(num As Long) As String
+    Dim Eenheden As Variant
+    Dim Tientallen As Variant
+    Dim res As String
+    
+    ' Array met eenheden
+    Eenheden = Array("", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen")
+    
+    ' Array met tientallen
+    Tientallen = Array("", "", "twintig", "dertig", "veertig", "vijftig", "zestig", "zeventig", "tachtig", "negentig")
+
+    ' Controleer honderdtallen
+    If num >= 100 Then
+        res = Eenheden(num \ 100) & "honderd"
+        num = num Mod 100
+    End If
+    
+    ' Speciale gevallen voor de tientallen
+    If num > 10 And num < 20 Then
+        Select Case num
+            Case 11: res = res & "elf"
+            Case 12: res = res & "twaalf"
+            Case 13: res = res & "dertien"
+            Case 14: res = res & "veertien"
+            Case 15: res = res & "vijftien"
+            Case 16: res = res & "zestien"
+            Case 17: res = res & "zeventien"
+            Case 18: res = res & "achttien"
+            Case 19: res = res & "negentien"
+        End Select
+    ElseIf num >= 20 Then
+        If num Mod 10 <> 0 Then
+            res = res & Eenheden(num Mod 10) & "en"
+        End If
+        res = res & Tientallen(num \ 10)
+    Else
+        res = res & Eenheden(num)
+    End If
+    
+    GetalNaarHonderden = res
+
+End Function

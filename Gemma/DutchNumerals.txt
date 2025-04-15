@@ -1,0 +1,108 @@
+Model URL
+kaggle.com/models/drj19461/gemma-dutch-numerals
+
+
+
+import json
+from tensorflow.keras.models import load_model
+
+# Load your model
+model = load_model('/kaggle/input/gemma-dutch-numerals-model/gemma_dutchnumerals.h5')
+
+# Get the model configuration
+config = model.get_config()
+
+# Save the configuration to a JSON file
+with open('/kaggle/input/gemma-dutch-numerals-model/config.json', 'w') as f:
+    json.dump(config, f)
+
+
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+from keras_nlp.models import GemmaCausalLM
+
+# Define the custom object
+custom_objects = {
+    'GemmaCausalLM': GemmaCausalLM
+}
+
+# Load the model with custom objects
+model_path = '/kaggle/input/gemma-dutch-numerals-model/gemma_dutchnumerals.h5'
+gemma_lm = load_model(model_path, custom_objects=custom_objects)
+
+# Confirm the model is loaded by printing its summary
+gemma_lm.summary()
+
+
+
+
+import keras_nlp
+
+# Assuming gemma_lm is your trained model
+# Save the model weights
+gemma_lm.save_weights('/kaggle/working/gemma_dutchnumerals_weights.h5')
+
+# Save the model configuration
+with open('/kaggle/working/gemma_dutchnumerals_config.json', 'w') as json_file:
+    json_file.write(gemma_lm.to_json())
+
+
+Upload gemma_dutchnumerals_weights.h5 and gemma_dutchnumerals_config.json to a new Kaggle dataset.
+
+
+import keras_nlp
+import json
+from tensorflow.keras.models import model_from_json
+
+# Load the model configuration
+with open('/kaggle/input/your-dataset-name/gemma_dutchnumerals_config.json', 'r') as json_file:
+    model_json = json_file.read()
+
+# Recreate the model from the configuration
+gemma_lmft = model_from_json(model_json, custom_objects={'GemmaCausalLM': keras_nlp.models.GemmaCausalLM})
+
+# Load the model weights
+gemma_lmft.load_weights('/kaggle/input/your-dataset-name/gemma_dutchnumerals_weights.h5')
+
+# Confirm the model is loaded by printing its summary
+gemma_lmft.summary()
+
+
+
+
+import keras_nlp
+
+# Initialize the GemmaTokenizer
+tokenizer = keras_nlp.tokenizers.GemmaTokenizer.from_preset("gemma_2b_en")
+
+# Tokenize the response field
+response_tokens = tokenizer.tokenize("779")
+print(f"Response Tokens: {response_tokens}")
+
+# Tokenize the instruction field
+instruction_tokens = tokenizer.tokenize("zevenhonderdnegenenzeventig")
+print(f"Instruction Tokens: {instruction_tokens}")
+
+
+
+
+
+/kaggle/input/d/drj19461/gemma-dutch-numerals-model/gemma_dutchnumerals.keras
+
+
+
+https://www.kaggle.com/code/drj19461/gemma-dutch-numerals/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+number1.wav|one
+number2.wav|two
+number3.wav|three
+number4.wav|four
+number5.wav|five
+number6.wav|six
+number7.wav|seven
+number8.wav|eight
+number9.wav|nine
+number10.wav|ten
