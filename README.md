@@ -51,3 +51,15 @@ pip install torchaudio
 
 pip install transformers, datasets 
 ```
+
+### Training and evaluation data
+
+Data for training and/or evaluation are loaded with
+
+```python
+DATASET_DIR = "./numberaudiodata/"
+AUDIO_DIR = "./numberaudiodata/"
+
+dataset = load_dataset("json", data_files = DATASET_DIR + "trainNL.json")
+```
+
