@@ -61,6 +61,8 @@ DATASET_DIR = "./numberaudiodata/"
 AUDIO_DIR = "./numberaudiodata/"
 
 dataset = load_dataset("json", data_files = DATASET_DIR + "trainNL.json")
+
+dataset = dataset["train"]  # Ensure correct split selection
 ```
 
 The JSON file describing the data looks like
