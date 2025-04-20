@@ -14,9 +14,9 @@ Here I describe how to fine-tune the `SpeechT5ForTextToSpeech "microsoft/speecht
 
 Training was done by:
 
-* preparing training and evaluation data with the texts to pronounce and corresponding audio (.wav) files
+* preparing training and evaluation data with the texts to pronounce and corresponding audio (`.wav`) files
 * loading the data with the transformers datasets library 
-* loading the SpeechT5ForTextToSpeech "microsoft/speecht5_tts" model and SpeechT5Processor
+* loading the `SpeechT5ForTextToSpeech "microsoft/speecht5_tts"` model and `SpeechT5Processor`
 * running training with the transformers Training API
 
 
