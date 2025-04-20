@@ -8,7 +8,7 @@ As an example, we implement fine-tuning of a transformer model that was pretrain
 
 For example, the pretrained model has difficulty pronouncing Dutch words correctly.
 
-To keep things very simple, to limit the size of required training data and to make it possible to run the training on a low-end personal computer, we use data with the Dutch text or the number representation of the numbers 1 to 10, as well as audio files with the correct pronunciation.
+To keep things very simple, to limit the size of required training data and to make it possible to run the training on a low-end personal computer, we use data with the Dutch text or the number representation of the numbers 1 to 10, as well as audio files with the correct pronunciation. The following examples can be run on a personal computer with only a Celeron CPU and just 8GB RAM.
 
 Here I describe how to fine-tuned the SpeechT5ForTextToSpeech "microsoft/speecht5_tts" model to correctly pronounce the Dutch word "negen".
 
