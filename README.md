@@ -103,3 +103,33 @@ dataset = concatenate_datasets(datasets)
 
 print(len(dataset))  # Check new dataset size
 ```
+
+The dataset does not yet have actual sound data, which are needed for training. In the JSON file the file names of the sound data are given and we load these into the datset as follows:
+
+```python
+def update_example(example, audio_id):
+    example['audio_id'] = audio_id
+    example['language'] = 9
+    example['gender'] = 'female'
+    example['speaker_id'] = '1122'
+    example['is_gold_transcript'] = True
+    example['accent'] = 'None'
+
+    waveform, sampling_rate = torchaudio.load(AUDIO_DIR + example['audiofile'])
+    # Convert to NumPy
+    audio_array = waveform.numpy()
+    # print(audio_array.flatten())
+    example['audio'] = {}
+    example['audio']['array'] = audio_array.flatten()
+    example['audio']['sampling_rate'] = sampling_rate
+
+    return example
+
+# Use `enumerate` with `map()` to update dataset
+dataset = dataset.map(lambda example, idx: update_example(example, idx + 1), with_indices=True)
+
+dataset = dataset.cast_column("audio", Audio(sampling_rate=16000))
+
+print(dataset[3])
+
+```
