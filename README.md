@@ -22,4 +22,23 @@ Training was done by:
 
 Data preparation and fine-tuning is done by running SpeechT5/trainSpeechT5ttsGetallen.py on branch master: https://github.com/JacobAdj/AudioAI/blob/master/SpeechT5/trainSpeechT5ttsGetallen.py
 
+### Required libraries
 
+The following imports are used for fine-tuning:
+
+```python
+import os
+os.environ["WANDB_MODE"] = "disabled"
+
+import tensorflow as tf
+import torch
+import torchaudio
+
+from transformers import TrainingArguments, Trainer
+from transformers import SpeechT5HifiGan
+from transformers import TrainerCallback
+
+from datasets import load_dataset , Audio
+from datasets import concatenate_datasets
+```
+`
