@@ -43,7 +43,7 @@ from datasets import concatenate_datasets
 ```
 
 
-If not yet available in your Python installation, these can be installed with:
+If not yet available in your Python installation, these can be installed from your command prompt with:
 ```shell
 pip install tensorflow 
 pip install torch
