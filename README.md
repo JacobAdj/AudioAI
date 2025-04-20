@@ -44,7 +44,7 @@ from datasets import concatenate_datasets
 
 
 If not yet available in your Python installation, these can be installed with:
-```python
+```shell
 pip install tensorflow 
 pip install torch
 pip install torchaudio
