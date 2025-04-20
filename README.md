@@ -104,7 +104,7 @@ dataset = concatenate_datasets(datasets)
 print(len(dataset))  # Check new dataset size
 ```
 
-The dataset does not yet have actual sound data, which are needed for training. In the JSON file the file names of the sound data are given and we load these into the datset as follows:
+The dataset does not yet have actual sound data, which are needed for training. The JSON file has the file names of the sound data, wahic are in `.wav` files. We load these into the dataset as follows:
 
 ```python
 def update_example(example, audio_id):
@@ -133,3 +133,8 @@ dataset = dataset.cast_column("audio", Audio(sampling_rate=16000))
 print(dataset[3])
 
 ```
+
+The sound data, as waveform, are now in the example fields `example['audio']['array']` and their sampling rates are in the fields `example['audio']['sampling_rate']`.
+Sampling rates indicate how many times per second the strength of the sound signal is measured and are needed for correct interpretation of the sound signal.
+The `print(dataset[3])` statement serves to visually check the the data look right.
+
