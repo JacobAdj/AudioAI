@@ -17,6 +17,7 @@ Training was done by:
 * preparing training and evaluation data with the texts to pronounce and corresponding audio (.wav) files
 * loading the data with the transformers datasets library 
 * loading the SpeechT5ForTextToSpeech "microsoft/speecht5_tts" model and SpeechT5Processor
+* running training with the transformers Training API
 
 
 Data preparation and fine-tuning is done by running SpeechT5/trainSpeechT5ttsGetallen.py on branch master: https://github.com/JacobAdj/AudioAI/blob/master/SpeechT5/trainSpeechT5ttsGetallen.py
