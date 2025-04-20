@@ -290,8 +290,8 @@ class SaveBestModelCallback(TrainerCallback):
             if current_loss < 1.00 and current_loss < self.best_loss:
                 self.best_loss = current_loss
                 print(f"New best loss: {self.best_loss} - Saving model...")
-                self.model.save_pretrained("D:/LanguageModels/ftT5modelGetallen")
-                self.processor.save_pretrained("D:/LanguageModels/ftT5processorGetallen")
+                self.model.save_pretrained("D:/LanguageModels/ftT5modelGetallen9")
+                self.processor.save_pretrained("D:/LanguageModels/ftT5processorGetallen9")
 
 
 import torch.nn as nn
