@@ -68,8 +68,8 @@ The JSON file describing the data looks like
 ```json
 [
     {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number1.wav",
+        "root_path": "./numberaudiodata",
+        "audio_file": "./numberaudiodata/number1.wav",
         "text": "1",
         "spoken_text": "een",
         "speaker_id": "speaker1",
@@ -79,8 +79,8 @@ The JSON file describing the data looks like
 .......
 
     {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number10.wav",
+        "root_path": "./numberaudiodata",
+        "audio_file": "./numberaudiodata/number10.wav",
         "text": "10",
         "spoken_text": "tien",
         "speaker_id": "speaker1",
