@@ -75,70 +75,9 @@ The JSON file describing the data looks like
         "speaker_id": "speaker1",
         "duration": 2.0
     },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number2.wav",
-        "text": "2",
-        "spoken_text": "twee",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number3.wav",
-        "text": "3",
-        "spoken_text": "drie",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number4.wav",
-        "text": "4",
-        "spoken_text": "vier",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number5.wav",
-        "text": "5",
-        "spoken_text": "vijf",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number6.wav",
-        "text": "6",
-        "spoken_text": "zes",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number7.wav",
-        "text": "7",
-        "spoken_text": "zeven",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number8.wav",
-        "text": "8",
-        "spoken_text": "acht",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-    {
-        "root_path": "D:/LanguageModels/audiodata",
-        "audio_file": "D:/LanguageModels/audiodata/number9.wav",
-        "text": "9",
-        "spoken_text": "negen",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
+
+.......
+
     {
         "root_path": "D:/LanguageModels/audiodata",
         "audio_file": "D:/LanguageModels/audiodata/number10.wav",
