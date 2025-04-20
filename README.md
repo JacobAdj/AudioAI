@@ -41,4 +41,13 @@ from transformers import TrainerCallback
 from datasets import load_dataset , Audio
 from datasets import concatenate_datasets
 ```
-`
+
+
+If not yet available in your Python installation, these can be installed with:
+```python
+pip install tensorflow 
+pip install torch
+pip install torchaudio
+
+pip install transformers, datasets 
+```
