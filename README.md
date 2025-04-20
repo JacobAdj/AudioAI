@@ -90,3 +90,16 @@ The JSON file describing the data looks like
     }
 ]
 ```
+
+There are only 10 data items, which is too few for good training, so we augment the data by replicating the data to make the training dataset 10 times larger:
+
+```python
+datasets = []
+
+for d in range(10):
+    datasets.append(dataset)
+
+dataset = concatenate_datasets(datasets)
+
+print(len(dataset))  # Check new dataset size
+```
