@@ -136,5 +136,5 @@ print(dataset[3])
 
 The sound data, as waveform, are now in the example fields `example['audio']['array']` and their sampling rates are in the fields `example['audio']['sampling_rate']`.
 Sampling rates indicate how many times per second the strength of the sound signal is measured and are needed for correct interpretation of the sound signal.
-The `print(dataset[3])` statement serves to visually check the the data look right.
+The `print(dataset[3])` statement serves to visually check that the data look right.
 
