@@ -34,7 +34,7 @@ import tensorflow as tf
 import torch
 import torchaudio
 
-from transformers import TrainingArguments, Trainer
+from transformers import SpeechT5ForTextToSpeech, SpeechT5Processor, TrainingArguments, Trainer
 from transformers import SpeechT5HifiGan
 from transformers import TrainerCallback
 
