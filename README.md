@@ -104,7 +104,7 @@ dataset = concatenate_datasets(datasets)
 print(len(dataset))  # Check new dataset size
 ```
 
-The dataset does not yet have actual sound data, which are needed for training. The JSON file has the file names of the sound data, wahic are in `.wav` files. We load these into the dataset as follows:
+The dataset does not yet have actual sound data, which are needed for training. The JSON file has the file names of the sound data, which are in `.wav` files. We load these into the dataset as follows:
 
 ```python
 def update_example(example, audio_id):
@@ -134,7 +134,50 @@ print(dataset[3])
 
 ```
 
-The sound data, as waveform, are now in the example fields `example['audio']['array']` and their sampling rates are in the fields `example['audio']['sampling_rate']`.
+The sound data, as waveform, are now in the fields `example['audio']['array']` and their sampling rates are in the fields `example['audio']['sampling_rate']` of the data examples.
 Sampling rates indicate how many times per second the strength of the sound signal is measured and are needed for correct interpretation of the sound signal.
 The `print(dataset[3])` statement serves to visually check that the data look right.
 
+We now have the sound data, but these are not yet in an appropriate form to be used as inputs of a transformer model, a type of neural network. The raw waveform data have to be transformed to a spectrogram. The following code takes care of that:
+
+```python
+def prepare_dataset(example):
+
+    audio = example["audio"]
+
+    example = processor(
+        text=example["text"],
+        audio_target=audio["array"],
+        sampling_rate=audio["sampling_rate"],
+        return_attention_mask=False,
+    )
+
+    # strip off the batch dimension
+    example["labels"] = example["labels"][0]
+
+    embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation" , cache_dir=CACHE_DIR)
+
+    speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"])
+
+    example["speaker_embeddings"] = speaker_embeddings
+
+    return example
+
+
+processed_example = prepare_dataset(dataset[0])
+print(list(processed_example.keys()))
+print(processed_example["speaker_embeddings"].shape)
+print('type(processed_example["labels"])' , type(processed_example["labels"]))
+
+dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names)
+print('dataset.column_names' , dataset.column_names)
+print('training data negen input_ids' , dataset[8]['input_ids'])
+print('training data negen labels' , dataset[8]['labels'][0])
+
+loadedspectrogram = dataset[8]['labels']
+print('loadedspectrogram is ' , type(loadedspectrogram))
+
+# Ensure spectrogram is a PyTorch tensor
+spectrogram = torch.tensor(loadedspectrogram)
+
+```
