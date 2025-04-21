@@ -184,4 +184,6 @@ spectrogram = torch.tensor(loadedspectrogram)
 
 ```
 
-The `SpeechT5Processor` does the necessary conversions: `text=example["text"]` converts text to tokens and `audio_target=audio["array"]` and `       sampling_rate=audio["sampling_rate"]` convert the raw audio signak to a spectrogram.
+The `SpeechT5Processor` does the necessary conversions: `text=example["text"]` converts text to tokens, and `audio_target=audio["array"]` and   `sampling_rate=audio["sampling_rate"]` convert the raw audio signal to a spectrogram.
+
+
