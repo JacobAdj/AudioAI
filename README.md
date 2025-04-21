@@ -189,7 +189,7 @@ The `SpeechT5Processor` does the necessary conversions: `text=example["text"]` c
 There is also a bit of code to load speaker embeddings, to ensure pronunciations corresponding to the characteristics of a certain speaker:
 
 ```python
-embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation" , cache_dir=CACHE_DIR)
+    embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation" , cache_dir=CACHE_DIR)
 
     speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"])
 
