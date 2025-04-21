@@ -214,3 +214,13 @@ We are now ready to do some training by running
 ```
 after defining the paremeters of the `Trainer` class.
 
+The first parameter, `model`, is the pretrained model to be fine-tuned:
+```python
+MODEL_NAME = "microsoft/speecht5_tts"
+
+CACHE_DIR = "D:/LanguageModels/cache"
+
+model = SpeechT5ForTextToSpeech.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR)
+```
+The `MODEL_NAME` gives the name of the pretrained model to de downloaded from the HuggingFace hub, in this case the Microsoft `speecht5_tts` model.
+`CACHE_DIR` is not required, but used here to download the model to a custom cache directory to save space on my C: disk.
