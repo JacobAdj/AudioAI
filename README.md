@@ -246,3 +246,61 @@ training_args = TrainingArguments(
         fp16=True
     )
 ```
+
+The third parameter, `train_dataset`, has the training dataset we have prepared.
+
+This dataset needs some further processing for training, padding all input data to ensure constant input data lengths for batch processing.
+This is done by a data_collator, which is defined by:
+```python
+@dataclass
+class TTSDataCollatorWithPadding:
+    processor: Any
+
+    def __call__(
+        self, features: List[Dict[str, Union[List[int], torch.Tensor]]]
+    ) -> Dict[str, torch.Tensor]:
+        
+        input_ids = [{"input_ids": feature["input_ids"]} for feature in features]
+        label_features = [{"input_values": feature["labels"]} for feature in features]
+        
+        speaker_features = [feature["speaker_embeddings"] for feature in features]
+
+        # collate the inputs and targets into a batch
+        batch = processor.pad(
+            input_ids=input_ids, labels=label_features, return_tensors="pt"
+        )
+
+        # replace padding with -100 to ignore loss correctly
+        batch["labels"] = batch["labels"].masked_fill(
+            batch.decoder_attention_mask.unsqueeze(-1).ne(1), -100
+        )
+
+        # not used during fine-tuning
+        del batch["decoder_attention_mask"]
+
+        # round down target lengths to multiple of reduction factor
+        if model.config.reduction_factor > 1:
+            target_lengths = torch.tensor(
+                [len(feature["input_values"]) for feature in label_features]
+            )
+            target_lengths = target_lengths.new(
+                [
+                    length - length % model.config.reduction_factor
+                    for length in target_lengths
+                ]
+            )
+            max_length = max(target_lengths)
+            batch["labels"] = batch["labels"][:, :max_length]
+
+        # also add in the speaker embeddings
+        batch["speaker_embeddings"] = torch.tensor(speaker_features)
+
+        # print('batch["input_ids"]' , batch["input_ids"][3])
+        # print('batch["labels"]' , batch["labels"][3])
+
+        return batch
+    
+
+data_collator = TTSDataCollatorWithPadding(processor=processor)
+
+```
