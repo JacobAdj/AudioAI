@@ -186,4 +186,12 @@ spectrogram = torch.tensor(loadedspectrogram)
 
 The `SpeechT5Processor` does the necessary conversions: `text=example["text"]` converts text to tokens, and `audio_target=audio["array"]` and   `sampling_rate=audio["sampling_rate"]` convert the raw audio signal to a spectrogram.
 
+There is also a bit of code to load speaker embeddings, to ensure pronunciations corresponding to the characteristics of a certain speaker:
 
+```python
+embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation" , cache_dir=CACHE_DIR)
+
+    speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"])
+
+    example["speaker_embeddings"] = speaker_embeddings
+```
