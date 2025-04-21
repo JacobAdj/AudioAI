@@ -6,6 +6,8 @@ This tutorial aims to cover basics of adapting and fine-tuning language models f
 
 [Training and evaluation data loading](#training-and-evaluation-data-loading)
 
+[Data pre-processing](#data-pre-processing)
+
 ## Text to Speech
 
 As an example, we implement fine-tuning of a transformer model that was pretrained on an English language corpus. The model is to learn to pronounce numbers correctly in new languages that the model has not been pretrained on.
