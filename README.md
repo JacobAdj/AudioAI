@@ -312,4 +312,26 @@ class TTSDataCollatorWithPadding:
 data_collator = TTSDataCollatorWithPadding(processor=processor)
 ```
 
-Finally, we have defined a `callbacks` parameter to ensure that the best performing model is kept during the training run and the saved model is updated each time a better performing model is found.
+Finally, we have defined a `callbacks` parameter to ensure that the best performing model is kept during the training run and the saved model is updated each time a better performing model is found:
+```python
+    callbacks=[SaveBestModelCallback(model, processor, "D:/LanguageModels/ftT5modelDutchNumbers")]
+```
+The callback is define as:
+```python
+class SaveBestModelCallback(TrainerCallback):
+    def __init__(self, model, processor, save_path, best_loss=float("inf")):
+        self.model = model
+        self.processor = processor
+        self.save_path = save_path
+        self.best_loss = best_loss
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if state.log_history and "loss" in state.log_history[-1]: 
+            current_loss = state.log_history[-1]["loss"]
+            if current_loss < 1.00 and current_loss < self.best_loss:
+                self.best_loss = current_loss
+                print(f"New best loss: {self.best_loss} - Saving model...")
+                self.model.save_pretrained(self.save_path)
+                self.processor.save_pretrained(self.save_path)
+
+```
