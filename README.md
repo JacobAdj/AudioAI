@@ -22,7 +22,7 @@ Training was done by:
 
 Data preparation and fine-tuning is done by running SpeechT5/trainSpeechT5ttsGetallen.py on branch master: https://github.com/JacobAdj/AudioAI/blob/master/SpeechT5/trainSpeechT5ttsGetallen.py
 
-#required-libraries
+[click on this link](#required-libraries)
 
 ### Required libraries
 
