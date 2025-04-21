@@ -357,7 +357,43 @@ class SaveBestModelCallback(TrainerCallback):
 
 After training we can use the fine-tuned model to generate speech from written numbers.
 
+First we load the pretrained model that was saved during training:
 
+```python
+import torch
+
+import soundfile as sf
+import sounddevice as sd
+
+from datasets import load_dataset 
+
+from transformers import SpeechT5ForTextToSpeech, SpeechT5Processor
+from transformers import SpeechT5HifiGan
+
+
+MODEL_NAME = "microsoft/speecht5_tts"
+
+CACHE_DIR = "D:/LanguageModels/cache"
+DATASET_DIR = "D:/LanguageModels/dataset/"
+AUDIO_DIR = "D:/LanguageModels/dataset/audio/"
+
+finetuned = True
+
+if finetuned:
+    model = SpeechT5ForTextToSpeech.from_pretrained("D:/LanguageModels/ftT5modelGetallen")
+    processor = SpeechT5Processor.from_pretrained("D:/LanguageModels/ftT5processorGetallen")
+else:
+    model = SpeechT5ForTextToSpeech.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR)
+    processor = SpeechT5Processor.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR)
+
+print('model & processor loaded')
+
+embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation" , cache_dir=CACHE_DIR)
+speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
+vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan" , cache_dir=CACHE_DIR)
+
+print('speaker embeddings & vocoder loaded')
+```
 
 
 
