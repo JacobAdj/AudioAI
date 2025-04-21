@@ -200,4 +200,17 @@ There is also a bit of code to load speaker embeddings, to ensure pronunciations
 
 ### Training
 
-We are now ready to do some training.
+We are now ready to do some training by running
+```python
+  trainer = Trainer(
+        model = model,
+        args = training_args,
+        train_dataset = dataset,
+        data_collator = data_collator,
+        callbacks=[SaveBestModelCallback(model, processor, "D:/LanguageModels/ftT5modelDutchNumbers")]
+    )
+
+    trainer.train()
+```
+after defining the paremeters of the `Trainer` class.
+
