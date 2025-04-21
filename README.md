@@ -69,28 +69,29 @@ The JSON file describing the data looks like
 
 ```json
 [
-    {
-        "root_path": "./numberaudiodata",
-        "audio_file": "./numberaudiodata/number1.wav",
-        "text": "1",
-        "spoken_text": "een",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    },
-
-.......
-
-    {
-        "root_path": "./numberaudiodata",
-        "audio_file": "./numberaudiodata/number10.wav",
-        "text": "10",
-        "spoken_text": "tien",
-        "speaker_id": "speaker1",
-        "duration": 2.0
-    }
+  {
+    "text": "een",
+    "audiofile": "number1.wav"
+  },
+  {
+    "text": "twee",
+    "audiofile": "number2.wav"
+  },
+  {
+    "text": "drie",
+    "audiofile": "number3.wav"
+  },
+...
+  {
+    "text": "tien",
+    "audiofile": "number10.wav"
+  }
 ]
 ```
 
+The number data are given as words, not numbers 1 .. 10, because the `SpeechT5Processor` tokenizer does not have tokens for numbers.
+Therefore, we do the training with word representations of the numbers.
+When using the fine-tuned model for speech generation from numbers, we will pre-process the numbers to convert them to text before passing them to the model.
 There are only 10 data items, which is too few for good training, so we augment the data by replicating the data to make the training dataset 10 times larger:
 
 ```python
