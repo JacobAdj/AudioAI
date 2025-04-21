@@ -310,5 +310,6 @@ class TTSDataCollatorWithPadding:
     
 
 data_collator = TTSDataCollatorWithPadding(processor=processor)
-
 ```
+
+Finally, we have defined a `callbacks` parameter to ensure that the best performing model is kept during the training run and the saved model is updated each time a better performing model is found.
