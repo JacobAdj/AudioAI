@@ -52,7 +52,7 @@ pip install torchaudio
 pip install transformers, datasets 
 ```
 
-### Training and evaluation data
+### Training and evaluation data loading
 
 Data for training and/or evaluation are loaded with
 
@@ -103,6 +103,8 @@ dataset = concatenate_datasets(datasets)
 
 print(len(dataset))  # Check new dataset size
 ```
+
+### Data pre-processing
 
 The dataset does not yet have actual sound data, which are needed for training. The JSON file has the file names of the sound data, which are in `.wav` files. We load these into the dataset as follows:
 
@@ -195,3 +197,7 @@ There is also a bit of code to load speaker embeddings, to ensure pronunciations
 
     example["speaker_embeddings"] = speaker_embeddings
 ```
+
+### Training
+
+We are now ready to do some training.
