@@ -10,6 +10,9 @@ This tutorial aims to cover basics of adapting and fine-tuning language models f
 
 [Training](#training)
 
+[Speech generation](#speech-generation)
+
+
 
 ## Text to Speech
 
@@ -348,3 +351,16 @@ class SaveBestModelCallback(TrainerCallback):
                 self.processor.save_pretrained(self.save_path)
 
 ```
+
+
+### Speech generation
+
+After training we can use the fine-tuned model to generate speech from written numbers.
+
+
+
+
+
+
+
+
