@@ -92,6 +92,7 @@ The JSON file describing the data looks like
 The number data are given as words, not numbers 1 .. 10, because the `SpeechT5Processor` tokenizer does not have tokens for numbers.
 Therefore, we do the training with word representations of the numbers.
 When using the fine-tuned model for speech generation from numbers, we will pre-process the numbers to convert them to text before passing them to the model.
+
 There are only 10 data items, which is too few for good training, so we augment the data by replicating the data to make the training dataset 10 times larger:
 
 ```python
