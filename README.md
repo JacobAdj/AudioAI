@@ -224,3 +224,25 @@ model = SpeechT5ForTextToSpeech.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR
 ```
 The `MODEL_NAME` gives the name of the pretrained model to de downloaded from the HuggingFace hub, in this case the Microsoft `speecht5_tts` model.
 `CACHE_DIR` is not required, but used here to download the model to a custom cache directory to save space on my C: disk.
+
+The second parameter, `args`, has the arguments of the training algorithm, looking something like this:
+```python
+training_args = TrainingArguments(
+        output_dir="D:/LanguageModels/out_T5tts",
+        run_name="tts_exp", 
+        per_device_train_batch_size=32,
+        gradient_accumulation_steps=1,
+        num_train_epochs=100,
+        save_steps=100,
+        save_total_limit=2,
+        # logging_dir="D:/LanguageModels/logs",
+        logging_steps=1,
+        learning_rate=0.001,
+        optim="adamw_torch_fused",
+        eval_strategy="no",
+        # eval_strategy="steps",
+        eval_steps=500,
+        weight_decay=0.0,
+        fp16=True
+    )
+```
