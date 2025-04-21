@@ -224,6 +224,7 @@ model = SpeechT5ForTextToSpeech.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR
 ```
 The `MODEL_NAME` gives the name of the pretrained model to de downloaded from the HuggingFace hub, in this case the Microsoft `speecht5_tts` model.
 `CACHE_DIR` is not required, but used here to download the model to a custom cache directory to save space on my C: disk.
+
 As we are fine-tuning a pretrained model to add relatively marginal additional competence to the capacities it already has, we do not want to change all weights of the model. Instead, we instruct the training algorithm to update only weights of some of the later layers of the model, in this case the layers of its PostNet:
 ```python
    for param in model.parameters():
