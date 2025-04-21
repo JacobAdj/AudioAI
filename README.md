@@ -141,6 +141,8 @@ The `print(dataset[3])` statement serves to visually check that the data look ri
 We now have the sound data, but these are not yet in an appropriate form to be used as inputs of a transformer model, a type of neural network. The raw waveform data have to be transformed to a spectrogram. The following code takes care of that:
 
 ```python
+processor = SpeechT5Processor.from_pretrained(MODEL_NAME , cache_dir=CACHE_DIR)
+
 def prepare_dataset(example):
 
     audio = example["audio"]
