@@ -395,7 +395,52 @@ vocoder = SpeechT5HifiGan.from_pretrained("microsoft/speecht5_hifigan" , cache_d
 print('speaker embeddings & vocoder loaded')
 ```
 
+Now we can generate spoken text from a written number:
 
+```python
+from expandnumbers import getal_in_woorden
+import re
+
+
+# Replace numbers with words
+def replace_numbers(text):
+    return re.sub(r'\d+', lambda x: getal_in_woorden(int(x.group())), text)
+
+
+number = '9'
+
+number = replace_numbers(number)
+print(number)
+
+inputs = processor(text = number, return_tensors="pt")
+print('inputs["input_ids"]' , inputs["input_ids"] )
+
+spectrogram = model.generate_speech(inputs["input_ids"], speaker_embeddings)
+
+print('spectrogram' , spectrogram)
+print('spectrogram type' , type(spectrogram))
+
+speech = model.generate_speech(inputs["input_ids"], speaker_embeddings, vocoder=vocoder)
+
+print('speech' , speech)
+print('speech shape' , speech.shape)
+
+# Play the sound
+sd.play(speech, 16000)
+sd.wait()  # Wait until playback finishes
+
+outfilename = ''
+
+if finetuned:
+    outfilename = './output/' + number + '_T5modelFineGetallen.wav'
+else:
+    outfilename = './output/' + number + '_T5modelOrigGetallen.wav'
+
+sf.write(outfilename, speech, 16000)
+
+print("Speech synthesis complete and saved for number " + number + ' to ' + outfilename)
+
+```
 
 
 
