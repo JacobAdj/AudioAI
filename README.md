@@ -79,6 +79,8 @@ dataset = load_dataset("json", data_files = DATASET_DIR + "trainNL.json")
 dataset = dataset["train"]  # Ensure correct split selection
 ```
 
+Normally, we would have training and evaluation data sets with a representative number of samples, with the number of evaluation samples around 10 - 20 % of all data. To keep this tutorial as simple as possible and small enough to run on a personal computer, we only use a training dataset of just 10 samples. This will cause overfitting of the model to the training data, but will be sufficient to show that the model can learn new pronunciations.
+
 The JSON file describing the data looks like
 
 ```json
